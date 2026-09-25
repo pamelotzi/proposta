@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Per Te 🐦‍🔥 </title>
-    <!-- Google Fonts & Canvas Confetti -->
+    <title>Per Te 🐦‍🔥</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --bg-grad-1: #1a0813;
-            --bg-grad-2: #2d0b1e;
-            --primary-pink: #ff4e88;
-            --soft-pink: #ff85a1;
+            --bg-1: #1a0813;
+            --bg-2: #2d0b1e;
+            --pink-main: #ff4e88;
+            --pink-soft: #ff85a1;
             --gold: #f39c12;
             --card-bg: rgba(255, 255, 255, 0.08);
             --card-border: rgba(255, 255, 255, 0.18);
-            --text-main: #ffffff;
+            --text-color: #ffffff;
             --text-sub: #f3d5df;
         }
 
@@ -32,16 +31,14 @@
 
         html, body {
             width: 100%;
-            height: 100%;
+            min-height: 100vh;
             overflow-x: hidden;
+            background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%);
-            min-height: 100vh;
-            color: var(--text-main);
-            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -52,8 +49,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 1;
             overflow: hidden;
@@ -63,7 +60,6 @@
             position: absolute;
             color: rgba(255, 133, 161, 0.25);
             animation: floatUp linear infinite;
-            filter: drop-shadow(0 0 5px rgba(255,78,136,0.3));
         }
 
         @keyframes floatUp {
@@ -73,11 +69,9 @@
             100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
         }
 
-        /* CARD CENTRATA E PERFETTAMENTE RIDIMENSIONATA */
         .app-card {
             width: 100%;
-            max-width: 380px;
-            min-height: 520px;
+            max-width: 360px;
             background: var(--card-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -85,13 +79,12 @@
             border-radius: 28px;
             padding: 24px 18px;
             z-index: 2;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             align-items: center;
-            margin: 0 auto;
+            text-align: center;
+            margin: auto;
         }
 
         .step {
@@ -99,8 +92,7 @@
             width: 100%;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-            animation: fadeIn 0.5s ease forwards;
+            animation: fadeIn 0.4s ease forwards;
         }
 
         .step.active {
@@ -108,7 +100,7 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -116,8 +108,7 @@
             font-size: 20px;
             font-weight: 700;
             margin-bottom: 8px;
-            color: var(--text-main);
-            word-wrap: break-word;
+            color: var(--text-color);
         }
 
         .step-subtitle {
@@ -125,14 +116,12 @@
             color: var(--text-sub);
             margin-bottom: 15px;
             line-height: 1.4;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            max-width: 100%;
+            width: 100%;
         }
 
         .flower-container {
-            width: 180px;
-            height: 200px;
+            width: 170px;
+            height: 190px;
             margin: 10px 0;
             display: flex;
             justify-content: center;
@@ -142,23 +131,23 @@
         .bouquet-svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.3));
         }
 
         .polaroid-frame {
             background: #ffffff;
-            padding: 10px 10px 22px 10px;
+            padding: 10px 10px 20px 10px;
             border-radius: 8px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
             transform: rotate(-2deg);
-            margin: 10px 0 20px 0;
+            margin: 10px 0 15px 0;
             width: 210px;
-            max-width: 90%;
+            max-width: 95%;
         }
 
         .polaroid-img {
             width: 100%;
-            height: 190px;
+            height: 180px;
             object-fit: cover;
             border-radius: 4px;
             background: #eee;
@@ -167,28 +156,28 @@
         .polaroid-caption {
             font-family: 'Caveat', cursive;
             color: #333;
-            font-size: 20px;
+            font-size: 19px;
             margin-top: 8px;
             font-weight: 700;
             line-height: 1.2;
         }
 
         .envelope-wrapper {
-            width: 200px;
-            height: 140px;
+            width: 190px;
+            height: 130px;
             background: #d85c76;
             border-radius: 10px;
             margin: 20px 0;
             cursor: pointer;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .wax-seal {
-            width: 48px;
-            height: 48px;
+            width: 45px;
+            height: 45px;
             background: radial-gradient(circle, #e74c3c 0%, #c0392b 100%);
             border-radius: 50%;
             border: 2px solid #f1c40f;
@@ -206,7 +195,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(8px);
             z-index: 100;
             justify-content: center;
@@ -219,7 +208,7 @@
             color: #2b2b2b;
             padding: 22px 18px;
             border-radius: 16px;
-            max-width: 340px;
+            max-width: 330px;
             width: 100%;
             font-family: 'Caveat', cursive;
             font-size: 20px;
@@ -229,7 +218,7 @@
 
         .letter-close-btn {
             margin-top: 15px;
-            background: var(--primary-pink);
+            background: var(--pink-main);
             color: white;
             border: none;
             padding: 12px;
@@ -245,7 +234,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 22px;
             font-style: italic;
-            color: var(--soft-pink);
+            color: var(--pink-soft);
             margin: 15px 0 10px 0;
         }
 
@@ -286,12 +275,11 @@
             background: rgba(255, 255, 255, 0.12);
             color: rgba(255, 255, 255, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
+            padding: 10px 18px;
             font-size: 13px;
             font-weight: 600;
             border-radius: 50px;
-            width: 75%;
-            word-wrap: break-word;
+            width: 80%;
         }
 
         .btn-next {
@@ -308,7 +296,7 @@
         .progress-dots {
             display: flex;
             gap: 6px;
-            margin-top: 15px;
+            margin-top: 18px;
         }
 
         .dot {
@@ -319,7 +307,7 @@
         }
 
         .dot.active {
-            background: var(--primary-pink);
+            background: var(--pink-main);
             width: 20px;
             border-radius: 10px;
         }
@@ -340,7 +328,7 @@
 
         .date-badge {
             background: rgba(255, 78, 136, 0.25);
-            border: 1px solid var(--primary-pink);
+            border: 1px solid var(--pink-main);
             color: #ffb3c6;
             padding: 10px 16px;
             border-radius: 20px;
@@ -383,9 +371,7 @@
                 </svg>
             </div>
 
-            <button class="btn-next" id="btnNext1">
-                Continua ✨
-            </button>
+            <button class="btn-next" id="btnNext1">Continua ✨</button>
         </div>
 
         <!-- STEP 2 -->
@@ -398,9 +384,7 @@
                 <div class="polaroid-caption">noi dopo aver affrontato la pioggia post parco</div>
             </div>
 
-            <button class="btn-next" id="btnNext2">
-                Una piccola lettera virtuale :) 
-            </button>
+            <button class="btn-next" id="btnNext2">Una piccola lettera virtuale :) </button>
         </div>
 
         <!-- STEP 3 -->
@@ -412,34 +396,26 @@
                 <div class="wax-seal">❤️</div>
             </div>
 
-            <button class="btn-next" id="btnNext3">
-                Vai avanti 🌹
-            </button>
+            <button class="btn-next" id="btnNext3">Vai avanti 🌹</button>
         </div>
 
         <!-- STEP 4 -->
         <div class="step" id="step4">
-            <div style="font-size: 13px; color: var(--soft-pink); font-weight: 600; text-transform: uppercase;">Ora ho una sola domanda...</div>
+            <div style="font-size: 13px; color: var(--pink-soft); font-weight: 600; text-transform: uppercase;">Ora ho una sola domanda...</div>
             
-            <div class="proposal-title">
-                "Vuoi essere la mia ragazza?"
-            </div>
+            <div class="proposal-title">"Vuoi essere la mia ragazza?"</div>
 
             <div class="proposal-heart-icon">💖</div>
 
             <div class="buttons-area" id="buttonsArea">
-                <button class="btn-yes" id="btnYes">
-                    Sì
-                </button>
-                <button class="btn-no" id="btnNo">
-                    No (immagina lo sticker del pesce)
-                </button>
+                <button class="btn-yes" id="btnYes">Sì</button>
+                <button class="btn-no" id="btnNo">No (immagina lo sticker del pesce)</button>
             </div>
         </div>
 
         <!-- SUCCESS CARD -->
         <div class="success-card" id="successCard">
-            <div style="font-size: 60px; margin-bottom: 10px;">🎉</div>
+            <div style="font-size: 55px; margin-bottom: 10px;">🎉</div>
             <div class="success-title">Hai Detto SÌ! 🥳</div>
             <p style="color: var(--text-sub); font-size: 14px; line-height: 1.5;">
                 Hai reso questo giorno (e non solo) il più bello, ma ormai sei abituata a farlo quindi non mi stupisco neanche più.<br>Non vedo l'ora di vederti 🫶 
@@ -539,461 +515,11 @@
                 btnNo.innerText = noMessages[msgIndex];
 
                 const currentScale = 1 + (noClickCount * 0.12);
-                btnYes.style.transform = `scale(${Math.min(currentScale, 1.5)})`;
+                btnYes.style.transform = `scale(${Math.min(currentScale, 1.4)})`;
 
                 const area = document.getElementById('buttonsArea');
-                const maxX = (area.clientWidth / 2) - 40;
-                const maxY = 50;
-
-                const randomX = (Math.random() * maxX * 2) - maxX;
-                const randomY = (Math.random() * maxY * 2) - maxY;
-
-                btnNo.style.position = 'relative';
-                btnNo.style.left = randomX + 'px';
-                btnNo.style.top = randomY + 'px';
-            };
-
-            addTouchAndClick('btnNo', moveNo);
-
-            addTouchAndClick('btnYes', function() {
-                for (let i = 1; i <= 4; i++) {
-                    const s = document.getElementById('step' + i);
-                    if (s) s.style.display = 'none';
-                }
-                document.getElementById('progressDots').style.display = 'none';
-                document.getElementById('successCard').style.display = 'flex';
-
-                if (typeof confetti === 'function') {
-                    confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
-                }
-            });
-
-            const container = document.getElementById('hearts-container');
-            const symbols = ['❤️', '💖', '🌸', '✨'];
-            for (let i = 0; i < 12; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'bg-heart';
-                heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
-                heart.style.animationDelay = (Math.random() * 4) + 's';
-                heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
-                container.appendChild(heart);
-            }
-        });
-    </script>
-</body>
-</html>
-ora questi fiori fatti di codici pensati solo per te...</div>
-            
-            <div class="flower-container">
-                <svg class="bouquet-svg" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M85 160 L60 220 M100 160 L100 230 M115 160 L140 220" stroke="#4a7c59" stroke-width="5" stroke-linecap="round"/>
-                    <path d="M75 165 C90 175, 110 175, 125 165 C115 155, 85 155, 75 165 Z" fill="#ff4e88"/>
-                    <path d="M50 130 Q30 120 40 100 Q60 110 50 130 Z" fill="#2d5a27"/>
-                    <path d="M150 130 Q170 120 160 100 Q140 110 150 130 Z" fill="#2d5a27"/>
-
-                    <g transform="translate(55, 90)">
-                        <circle cx="0" cy="0" r="22" fill="#ff85a1"/>
-                        <circle cx="-6" cy="-6" r="14" fill="#ffb3c6"/>
-                    </g>
-                    <g transform="translate(145, 90)">
-                        <circle cx="0" cy="0" r="22" fill="#ff85a1"/>
-                        <circle cx="6" cy="-6" r="14" fill="#ffb3c6"/>
-                    </g>
-                    <g transform="translate(100, 70)">
-                        <circle cx="0" cy="0" r="28" fill="#d81b60"/>
-                        <path d="M-12 -5 C-10 -20, 10 -20, 12 -5 C20 5, -20 15, -12 -5 Z" fill="#e91e63"/>
-                    </g>
-                </svg>
-            </div>
-
-            <button class="btn-next" id="btnNext1">
-                Continua ✨
-            </button>
-        </div>
-
-        <!-- STEP 2 -->
-        <div class="step" id="step2">
-            <div class="step-title">Un Ricordo Speciale 📸</div>
-            <div class="step-subtitle">Tra tutti i momenti passati insieme, questo ha un posto speciale...</div>
-
-            <div class="polaroid-frame">
-                <img src="https://i.ibb.co/0RvmGzx5/IMG-20260909-WA0041.jpg" alt="Momento Speciale" class="polaroid-img">
-                <div class="polaroid-caption">noi dopo aver affrontato la pioggia post parco</div>
-            </div>
-
-            <button class="btn-next" id="btnNext2">
-                Una piccola lettera virtuale :) 
-            </button>
-        </div>
-
-        <!-- STEP 3 -->
-        <div class="step" id="step3">
-            <div class="step-title">✉️</div>
-            <div class="step-subtitle">Tocca la busta con il sigillo per aprirla e leggere il contenuto...</div>
-
-            <div class="envelope-wrapper" id="envelopeBtn">
-                <div class="wax-seal">❤️</div>
-            </div>
-
-            <button class="btn-next" id="btnNext3">
-                Vai avanti 🌹
-            </button>
-        </div>
-
-        <!-- STEP 4 -->
-        <div class="step" id="step4">
-            <div style="font-size: 13px; color: var(--soft-pink); font-weight: 600; text-transform: uppercase;">Ora ho una sola domanda...</div>
-            
-            <div class="proposal-title">
-                "Vuoi essere la mia ragazza?"
-            </div>
-
-            <div class="proposal-heart-icon">💖</div>
-
-            <div class="buttons-area" id="buttonsArea">
-                <button class="btn-yes" id="btnYes">
-                    Sì
-                </button>
-                <button class="btn-no" id="btnNo">
-                    No (immagina lo sticker del pesce)
-                </button>
-            </div>
-        </div>
-
-        <!-- SUCCESS CARD -->
-        <div class="success-card" id="successCard">
-            <div style="font-size: 60px; margin-bottom: 10px;">🎉</div>
-            <div class="success-title">Hai Detto SÌ! 🥳</div>
-            <p style="color: var(--text-sub); font-size: 14px; line-height: 1.5;">
-                Hai reso questo giorno (e non solo) il più bello, ma ormai sei abituata a farlo quindi non mi stupisco neanche più.<br>Non vedo l'ora di vederti 🫶 
-            </p>
-
-            <div class="date-badge">
-                🗓️ Il nostro primo appuntamento da fidanzate ci aspetta!
-            </div>
-        </div>
-
-        <!-- Dots -->
-        <div class="progress-dots" id="progressDots">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-
-    </div>
-
-    <!-- Modal Lettera -->
-    <div class="letter-modal" id="letterModal">
-        <div class="letter-content">
-            <p>
-                "Ormai ci conosciamo da quasi un anno (manca poco!) e, nonostante ne abbiamo vissute di tutti i colori, mi sento di dirti solo quanto sono contenta che tu faccia parte della mia vita e quanto sei unica. Con te sono la persona più felice del mondo e non potevo chiedere una ragazza migliore al mio fianco. Anche per questo, mi sembra giusto fare un passo avanti..."
-            </p>
-            <button class="letter-close-btn" id="closeLetterBtn">Continua ❤️</button>
-        </div>
-    </div>
-
-    <script>
-        function addTouchAndClick(elementId, callback) {
-            const el = document.getElementById(elementId);
-            if (!el) return;
-            
-            let handled = false;
-            
-            el.addEventListener('touchstart', function(e) {
-                handled = true;
-                e.preventDefault();
-                callback();
-            }, { passive: false });
-
-            el.addEventListener('click', function(e) {
-                if (!handled) {
-                    callback();
-                }
-                handled = false;
-            });
-        }
-
-        let noClickCount = 0;
-        const noMessages = [
-            "No (immaginati lo sticker del pesce)", "Sei sicura? 🥺", "Ripensaci! 💔", 
-            "Daiii! 🌹", "Non puoi dire di no! ✨", "Guarda il tasto rosa! 😉"
-        ];
-
-        function goToStep(stepNumber) {
-            for (let i = 1; i <= 4; i++) {
-                const s = document.getElementById('step' + i);
-                if (s) s.classList.remove('active');
-            }
-            
-            const targetStep = document.getElementById('step' + stepNumber);
-            if (targetStep) targetStep.classList.add('active');
-
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((dot, index) => {
-                if (index === stepNumber - 1) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            addTouchAndClick('btnNext1', function() { goToStep(2); });
-            addTouchAndClick('btnNext2', function() { goToStep(3); });
-            addTouchAndClick('btnNext3', function() { goToStep(4); });
-            
-            addTouchAndClick('envelopeBtn', function() {
-                document.getElementById('letterModal').style.display = 'flex';
-            });
-
-            addTouchAndClick('closeLetterBtn', function() {
-                document.getElementById('letterModal').style.display = 'none';
-                goToStep(4);
-            });
-
-            const moveNo = function() {
-                noClickCount++;
-                const btnNo = document.getElementById('btnNo');
-                const btnYes = document.getElementById('btnYes');
-                
-                const msgIndex = Math.min(noClickCount, noMessages.length - 1);
-                btnNo.innerText = noMessages[msgIndex];
-
-                const currentScale = 1 + (noClickCount * 0.12);
-                btnYes.style.transform = `scale(${Math.min(currentScale, 1.5)})`;
-
-                const area = document.getElementById('buttonsArea');
-                const maxX = (area.clientWidth / 2) - 40;
-                const maxY = 50;
-
-                const randomX = (Math.random() * maxX * 2) - maxX;
-                const randomY = (Math.random() * maxY * 2) - maxY;
-
-                btnNo.style.position = 'relative';
-                btnNo.style.left = randomX + 'px';
-                btnNo.style.top = randomY + 'px';
-            };
-
-            addTouchAndClick('btnNo', moveNo);
-
-            addTouchAndClick('btnYes', function() {
-                for (let i = 1; i <= 4; i++) {
-                    const s = document.getElementById('step' + i);
-                    if (s) s.style.display = 'none';
-                }
-                document.getElementById('progressDots').style.display = 'none';
-                document.getElementById('successCard').style.display = 'flex';
-
-                if (typeof confetti === 'function') {
-                    confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
-                }
-            });
-
-            const container = document.getElementById('hearts-container');
-            const symbols = ['❤️', '💖', '🌸', '✨'];
-            for (let i = 0; i < 12; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'bg-heart';
-                heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
-                heart.style.animationDelay = (Math.random() * 4) + 's';
-                heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
-                container.appendChild(heart);
-            }
-        });
-    </script>
-</body>
-</html>
-oranea questi fiori fatti di codici pensati solo per te...</div>
-            
-            <div class="flower-container">
-                <svg class="bouquet-svg" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M85 160 L60 220 M100 160 L100 230 M115 160 L140 220" stroke="#4a7c59" stroke-width="5" stroke-linecap="round"/>
-                    <path d="M75 165 C90 175, 110 175, 125 165 C115 155, 85 155, 75 165 Z" fill="#ff4e88"/>
-                    <path d="M50 130 Q30 120 40 100 Q60 110 50 130 Z" fill="#2d5a27"/>
-                    <path d="M150 130 Q170 120 160 100 Q140 110 150 130 Z" fill="#2d5a27"/>
-
-                    <g transform="translate(55, 90)">
-                        <circle cx="0" cy="0" r="22" fill="#ff85a1"/>
-                        <circle cx="-6" cy="-6" r="14" fill="#ffb3c6"/>
-                    </g>
-                    <g transform="translate(145, 90)">
-                        <circle cx="0" cy="0" r="22" fill="#ff85a1"/>
-                        <circle cx="6" cy="-6" r="14" fill="#ffb3c6"/>
-                    </g>
-                    <g transform="translate(100, 70)">
-                        <circle cx="0" cy="0" r="28" fill="#d81b60"/>
-                        <path d="M-12 -5 C-10 -20, 10 -20, 12 -5 C20 5, -20 15, -12 -5 Z" fill="#e91e63"/>
-                    </g>
-                </svg>
-            </div>
-
-            <button class="btn-next" id="btnNext1">
-                Continua ✨
-            </button>
-        </div>
-
-        <!-- STEP 2 -->
-        <div class="step" id="step2">
-            <div class="step-title">Un Ricordo Speciale 📸</div>
-            <div class="step-subtitle">Tra tutti i momenti passati insieme, questo ha un posto speciale...</div>
-
-            <div class="polaroid-frame">
-                <img src="https://ibb.co/0RvmGzx5" alt="Momento Speciale" class="polaroid-img">
-                <div class="polaroid-caption">noi dopo aver affrontato la pioggia post parco</div>
-            </div>
-
-            <button class="btn-next" id="btnNext2">
-                Una piccola lettera virtuale :) 
-            </button>
-        </div>
-
-        <!-- STEP 3 -->
-        <div class="step" id="step3">
-            <div class="step-title">✉️</div>
-            <div class="step-subtitle">Tocca la busta con il sigillo per aprirla e leggere il contenuto...</div>
-
-            <div class="envelope-wrapper" id="envelopeBtn">
-                <div class="wax-seal">❤️</div>
-            </div>
-
-            <button class="btn-next" id="btnNext3">
-                Vai avanti 🌹
-            </button>
-        </div>
-
-        <!-- STEP 4 -->
-        <div class="step" id="step4">
-            <div style="font-size: 13px; color: var(--soft-pink); font-weight: 600; text-transform: uppercase;">Ora ho una sola domanda...</div>
-            
-            <div class="proposal-title">
-                "Vuoi essere la mia ragazza?"
-            </div>
-
-            <div class="proposal-heart-icon">💖</div>
-
-            <div class="buttons-area" id="buttonsArea">
-                <button class="btn-yes" id="btnYes">
-                    Sì
-                </button>
-                <button class="btn-no" id="btnNo">
-                    No (immagina lo sticker del pesce)
-                </button>
-            </div>
-        </div>
-
-        <!-- SUCCESS CARD -->
-        <div class="success-card" id="successCard">
-            <div style="font-size: 60px; margin-bottom: 10px;">🎉</div>
-            <div class="success-title">Hai Detto SÌ! 🥳</div>
-            <p style="color: var(--text-sub); font-size: 14px; line-height: 1.5;">
-                Hai reso questo giorno (e non solo) il più bello, ma ormai sei abituata a farlo quindi non mi stupisco neanche più.<br>Non vedo l'ora di vederti 🫶 
-            </p>
-
-            <div class="date-badge">
-                🗓️ Il nostro primo appuntamento da fidanzate ci aspetta!
-            </div>
-        </div>
-
-        <!-- Dots -->
-        <div class="progress-dots" id="progressDots">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-
-    </div>
-
-    <!-- Modal Lettera -->
-    <div class="letter-modal" id="letterModal">
-        <div class="letter-content">
-            <p>
-                "Ormai ci conosciamo da quasi un anno (manca poco!) e, nonostante ne abbiamo vissute di tutti i colori, mi sento di dirti solo quanto sono contenta che tu faccia parte della mia vita e quanto sei unica. Con te sono la persona più felice del mondo e non potevo chiedere una ragazza migliore al mio fianco. Anche per questo, mi sembra giusto fare un passo avanti..."
-            </p>
-            <button class="letter-close-btn" id="closeLetterBtn">Continua ❤️</button>
-        </div>
-    </div>
-
-    <script>
-        function addTouchAndClick(elementId, callback) {
-            const el = document.getElementById(elementId);
-            if (!el) return;
-            
-            let handled = false;
-            
-            el.addEventListener('touchstart', function(e) {
-                handled = true;
-                e.preventDefault();
-                callback();
-            }, { passive: false });
-
-            el.addEventListener('click', function(e) {
-                if (!handled) {
-                    callback();
-                }
-                handled = false;
-            });
-        }
-
-        let noClickCount = 0;
-        const noMessages = [
-            "No (immaginati lo sticker del pesce)", "Sei sicura? 🥺", "Ripensaci! 💔", 
-            "Daiii! 🌹", "Non puoi dire di no! ✨", "Guarda il tasto rosa! 😉"
-        ];
-
-        function goToStep(stepNumber) {
-            for (let i = 1; i <= 4; i++) {
-                const s = document.getElementById('step' + i);
-                if (s) s.classList.remove('active');
-            }
-            
-            const targetStep = document.getElementById('step' + stepNumber);
-            if (targetStep) targetStep.classList.add('active');
-
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((dot, index) => {
-                if (index === stepNumber - 1) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            addTouchAndClick('btnNext1', function() { goToStep(2); });
-            addTouchAndClick('btnNext2', function() { goToStep(3); });
-            addTouchAndClick('btnNext3', function() { goToStep(4); });
-            
-            addTouchAndClick('envelopeBtn', function() {
-                document.getElementById('letterModal').style.display = 'flex';
-            });
-
-            addTouchAndClick('closeLetterBtn', function() {
-                document.getElementById('letterModal').style.display = 'none';
-                goToStep(4);
-            });
-
-            const moveNo = function() {
-                noClickCount++;
-                const btnNo = document.getElementById('btnNo');
-                const btnYes = document.getElementById('btnYes');
-                
-                const msgIndex = Math.min(noClickCount, noMessages.length - 1);
-                btnNo.innerText = noMessages[msgIndex];
-
-                const currentScale = 1 + (noClickCount * 0.12);
-                btnYes.style.transform = `scale(${Math.min(currentScale, 1.5)})`;
-
-                const area = document.getElementById('buttonsArea');
-                const maxX = (area.clientWidth / 2) - 40;
-                const maxY = 50;
+                const maxX = (area.clientWidth / 2) - 30;
+                const maxY = 40;
 
                 const randomX = (Math.random() * maxX * 2) - maxX;
                 const randomY = (Math.random() * maxY * 2) - maxY;
