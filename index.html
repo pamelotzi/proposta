@@ -380,6 +380,231 @@
             <div class="step-subtitle">Tra tutti i momenti passati insieme, questo ha un posto speciale...</div>
 
             <div class="polaroid-frame">
+                <img src="https://i.ibb.co/0RvmGzx5/IMG-20260909-WA0041.jpg" alt="Momento Speciale" class="polaroid-img">
+                <div class="polaroid-caption">noi dopo aver affrontato la pioggia post parco</div>
+            </div>
+
+            <button class="btn-next" id="btnNext2">
+                Una piccola lettera virtuale :) 
+            </button>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step" id="step3">
+            <div class="step-title">✉️</div>
+            <div class="step-subtitle">Tocca la busta con il sigillo per aprirla e leggere il contenuto...</div>
+
+            <div class="envelope-wrapper" id="envelopeBtn">
+                <div class="wax-seal">❤️</div>
+            </div>
+
+            <button class="btn-next" id="btnNext3">
+                Vai avanti 🌹
+            </button>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="step" id="step4">
+            <div style="font-size: 13px; color: var(--soft-pink); font-weight: 600; text-transform: uppercase;">Ora ho una sola domanda...</div>
+            
+            <div class="proposal-title">
+                "Vuoi essere la mia ragazza?"
+            </div>
+
+            <div class="proposal-heart-icon">💖</div>
+
+            <div class="buttons-area" id="buttonsArea">
+                <button class="btn-yes" id="btnYes">
+                    Sì
+                </button>
+                <button class="btn-no" id="btnNo">
+                    No (immagina lo sticker del pesce)
+                </button>
+            </div>
+        </div>
+
+        <!-- SUCCESS CARD -->
+        <div class="success-card" id="successCard">
+            <div style="font-size: 60px; margin-bottom: 10px;">🎉</div>
+            <div class="success-title">Hai Detto SÌ! 🥳</div>
+            <p style="color: var(--text-sub); font-size: 14px; line-height: 1.5;">
+                Hai reso questo giorno (e non solo) il più bello, ma ormai sei abituata a farlo quindi non mi stupisco neanche più.<br>Non vedo l'ora di vederti 🫶 
+            </p>
+
+            <div class="date-badge">
+                🗓️ Il nostro primo appuntamento da fidanzate ci aspetta!
+            </div>
+        </div>
+
+        <!-- Dots -->
+        <div class="progress-dots" id="progressDots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+    </div>
+
+    <!-- Modal Lettera -->
+    <div class="letter-modal" id="letterModal">
+        <div class="letter-content">
+            <p>
+                "Ormai ci conosciamo da quasi un anno (manca poco!) e, nonostante ne abbiamo vissute di tutti i colori, mi sento di dirti solo quanto sono contenta che tu faccia parte della mia vita e quanto sei unica. Con te sono la persona più felice del mondo e non potevo chiedere una ragazza migliore al mio fianco. Anche per questo, mi sembra giusto fare un passo avanti..."
+            </p>
+            <button class="letter-close-btn" id="closeLetterBtn">Continua ❤️</button>
+        </div>
+    </div>
+
+    <script>
+        function addTouchAndClick(elementId, callback) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            
+            let handled = false;
+            
+            el.addEventListener('touchstart', function(e) {
+                handled = true;
+                e.preventDefault();
+                callback();
+            }, { passive: false });
+
+            el.addEventListener('click', function(e) {
+                if (!handled) {
+                    callback();
+                }
+                handled = false;
+            });
+        }
+
+        let noClickCount = 0;
+        const noMessages = [
+            "No (immaginati lo sticker del pesce)", "Sei sicura? 🥺", "Ripensaci! 💔", 
+            "Daiii! 🌹", "Non puoi dire di no! ✨", "Guarda il tasto rosa! 😉"
+        ];
+
+        function goToStep(stepNumber) {
+            for (let i = 1; i <= 4; i++) {
+                const s = document.getElementById('step' + i);
+                if (s) s.classList.remove('active');
+            }
+            
+            const targetStep = document.getElementById('step' + stepNumber);
+            if (targetStep) targetStep.classList.add('active');
+
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                if (index === stepNumber - 1) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            addTouchAndClick('btnNext1', function() { goToStep(2); });
+            addTouchAndClick('btnNext2', function() { goToStep(3); });
+            addTouchAndClick('btnNext3', function() { goToStep(4); });
+            
+            addTouchAndClick('envelopeBtn', function() {
+                document.getElementById('letterModal').style.display = 'flex';
+            });
+
+            addTouchAndClick('closeLetterBtn', function() {
+                document.getElementById('letterModal').style.display = 'none';
+                goToStep(4);
+            });
+
+            const moveNo = function() {
+                noClickCount++;
+                const btnNo = document.getElementById('btnNo');
+                const btnYes = document.getElementById('btnYes');
+                
+                const msgIndex = Math.min(noClickCount, noMessages.length - 1);
+                btnNo.innerText = noMessages[msgIndex];
+
+                const currentScale = 1 + (noClickCount * 0.12);
+                btnYes.style.transform = `scale(${Math.min(currentScale, 1.5)})`;
+
+                const area = document.getElementById('buttonsArea');
+                const maxX = (area.clientWidth / 2) - 40;
+                const maxY = 50;
+
+                const randomX = (Math.random() * maxX * 2) - maxX;
+                const randomY = (Math.random() * maxY * 2) - maxY;
+
+                btnNo.style.position = 'relative';
+                btnNo.style.left = randomX + 'px';
+                btnNo.style.top = randomY + 'px';
+            };
+
+            addTouchAndClick('btnNo', moveNo);
+
+            addTouchAndClick('btnYes', function() {
+                for (let i = 1; i <= 4; i++) {
+                    const s = document.getElementById('step' + i);
+                    if (s) s.style.display = 'none';
+                }
+                document.getElementById('progressDots').style.display = 'none';
+                document.getElementById('successCard').style.display = 'flex';
+
+                if (typeof confetti === 'function') {
+                    confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+                }
+            });
+
+            const container = document.getElementById('hearts-container');
+            const symbols = ['❤️', '💖', '🌸', '✨'];
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'bg-heart';
+                heart.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.animationDelay = (Math.random() * 4) + 's';
+                heart.style.fontSize = (Math.random() * 12 + 12) + 'px';
+                container.appendChild(heart);
+            }
+        });
+    </script>
+</body>
+</html>
+oranea questi fiori fatti di codici pensati solo per te...</div>
+            
+            <div class="flower-container">
+                <svg class="bouquet-svg" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M85 160 L60 220 M100 160 L100 230 M115 160 L140 220" stroke="#4a7c59" stroke-width="5" stroke-linecap="round"/>
+                    <path d="M75 165 C90 175, 110 175, 125 165 C115 155, 85 155, 75 165 Z" fill="#ff4e88"/>
+                    <path d="M50 130 Q30 120 40 100 Q60 110 50 130 Z" fill="#2d5a27"/>
+                    <path d="M150 130 Q170 120 160 100 Q140 110 150 130 Z" fill="#2d5a27"/>
+
+                    <g transform="translate(55, 90)">
+                        <circle cx="0" cy="0" r="22" fill="#ff85a1"/>
+                        <circle cx="-6" cy="-6" r="14" fill="#ffb3c6"/>
+                    </g>
+                    <g transform="translate(145, 90)">
+                        <circle cx="0" cy="0" r="22" fill="#ff85a1"/>
+                        <circle cx="6" cy="-6" r="14" fill="#ffb3c6"/>
+                    </g>
+                    <g transform="translate(100, 70)">
+                        <circle cx="0" cy="0" r="28" fill="#d81b60"/>
+                        <path d="M-12 -5 C-10 -20, 10 -20, 12 -5 C20 5, -20 15, -12 -5 Z" fill="#e91e63"/>
+                    </g>
+                </svg>
+            </div>
+
+            <button class="btn-next" id="btnNext1">
+                Continua ✨
+            </button>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step" id="step2">
+            <div class="step-title">Un Ricordo Speciale 📸</div>
+            <div class="step-subtitle">Tra tutti i momenti passati insieme, questo ha un posto speciale...</div>
+
+            <div class="polaroid-frame">
                 <img src="https://ibb.co/0RvmGzx5" alt="Momento Speciale" class="polaroid-img">
                 <div class="polaroid-caption">noi dopo aver affrontato la pioggia post parco</div>
             </div>
