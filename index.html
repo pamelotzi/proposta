@@ -134,22 +134,23 @@
             filter: drop-shadow(0 8px 12px rgba(0,0,0,0.3));
         }
 
+        /* CORNICE POLAROID ORIZZONTALE OTTIMIZZATA */
         .polaroid-frame {
             background: #ffffff;
-            padding: 10px 10px 18px 10px;
+            padding: 8px 8px 16px 8px;
             border-radius: 8px;
             box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-            transform: rotate(-2deg);
+            transform: rotate(-1.5deg);
             margin: 10px 0 15px 0;
             width: 100%;
-            max-width: 310px;
+            max-width: 320px;
         }
 
         .polaroid-img {
             width: 100%;
-            height: auto; /* Mantiene l'altezza proporzionale originale */
-            max-height: 250px;
-            object-fit: contain; /* Nessun taglio ai lati */
+            height: 160px;
+            object-fit: cover;
+            object-position: center center;
             border-radius: 4px;
             display: block;
         }
@@ -157,8 +158,8 @@
         .polaroid-caption {
             font-family: 'Caveat', cursive;
             color: #333;
-            font-size: 19px;
-            margin-top: 10px;
+            font-size: 18px;
+            margin-top: 8px;
             font-weight: 700;
             line-height: 1.2;
         }
