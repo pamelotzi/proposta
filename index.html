@@ -134,7 +134,6 @@
             filter: drop-shadow(0 8px 12px rgba(0,0,0,0.3));
         }
 
-        /* CORNICE POLAROID PER FOTO ORIZZONTALI */
         .polaroid-frame {
             background: #ffffff;
             padding: 8px 8px 16px 8px;
@@ -146,15 +145,13 @@
             max-width: 320px;
         }
 
-        /* MOSTRA L'IMMAGINE INTERA SENZA TAGLI */
         .polaroid-img {
             width: 100%;
-            height: auto;
-            max-height: 220px;
-            object-fit: contain;
+            height: 170px;
+            object-fit: cover;
+            object-position: center;
             border-radius: 4px;
             display: block;
-            background: #f8f8f8;
         }
 
         .polaroid-caption {
@@ -384,7 +381,7 @@
             <div class="step-subtitle">Tra tutti i momenti passati insieme, questo ha un posto speciale...</div>
 
             <div class="polaroid-frame">
-                <img src="https://i.ibb.co/0RvmGzx5/IMG-20260909-WA0041.jpg" alt="Momento Speciale" class="polaroid-img">
+                <img src="https://i.ibb.co/hR8xn2Cb/IMG-20260909-WA0040.jpg" alt="Momento Speciale" class="polaroid-img">
                 <div class="polaroid-caption">noi dopo aver affrontato la pioggia post parco</div>
             </div>
 
@@ -564,3 +561,4 @@
     </script>
 </body>
 </html>
+ 
